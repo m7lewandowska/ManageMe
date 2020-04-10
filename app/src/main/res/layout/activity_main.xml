@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo2" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextMail3"
@@ -29,7 +29,7 @@
         app:boxBackgroundMode="outline"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:endIconMode="clear_text"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         app:startIconDrawable="@drawable/ic_mail_outline_black_24dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextPassword3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,6 @@
             android:id="@+id/editTextMail4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textStyle="bold"
             android:textColor="#3f51b5"
             android:textColorHint="#3f51b5"
