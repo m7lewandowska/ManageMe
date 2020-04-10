@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f6"
+    android:background="@drawable/bcg1"
     tools:context=".SignUpActivity">
 
     <ImageView
@@ -41,9 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="#002984"
-            android:textColorHint="#002984"
-            android:textColorLink="#002984"
+            android:textColor="#3f51b5"
+            android:textColorHint="#3f51b5"
+            android:textColorLink="#3f51b5"
             android:textSize="20sp"
             />
 
@@ -74,9 +74,9 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:textStyle="bold"
-            android:textColor="#002984"
-            android:textColorHint="#002984"
-            android:textColorLink="#002984"
+            android:textColor="#3f51b5"
+            android:textColorHint="#3f51b5"
+            android:textColorLink="#3f51b5"
             android:textSize="20sp"
             />
 

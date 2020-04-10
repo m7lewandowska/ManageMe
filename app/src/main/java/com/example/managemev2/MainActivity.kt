@@ -17,10 +17,18 @@ class MainActivity : AppCompatActivity() {
 
         buttonLogin.setOnClickListener()
         {
-            var email = editTextMail4.text
-            var password = editTextPassword4.text
+            var email = editTextMail4.text.toString()
+            var password = editTextPassword4.text.toString()
 
-            signIn(email.toString(), password.toString())
+            if(email.length == 0 || password.length == 0)
+            {
+                Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_LONG).show()
+                editTextMail4.text?.clear()
+                editTextPassword4.text?.clear()
+            }
+            else {
+                signIn(email.toString(), password.toString())
+            }
         }
 
         buttonCreateAccount.setOnClickListener()
@@ -39,6 +47,12 @@ class MainActivity : AppCompatActivity() {
                 //Create new Activity
                 var intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
+            }
+            else{
+                Toast.makeText(applicationContext, "Wrong data, please try again!!!", Toast.LENGTH_LONG).show()
+                editTextMail4.text?.clear()
+                editTextPassword4.text?.clear()
+
             }
 
         }
