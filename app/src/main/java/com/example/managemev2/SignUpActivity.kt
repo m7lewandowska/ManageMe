@@ -18,19 +18,27 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        buttonSignUp.setOnClickListener()
-        {
+        buttonSignUp.setOnClickListener() {
            // var email = editTextMail.text.toString()
-            var email = editTextMail2.text
-            var password = editTextPassword2.text
+            var email = editTextMail2.text.toString()
+            var password = editTextPassword2.text.toString()
 
 
-
-            createAccount(email.toString(), password.toString())
+            if(email.length == 0 || password.length == 0) {
+                Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_LONG).show()
+                editTextMail2.text?.clear()
+                editTextPassword2.text?.clear()
+            }
+            if(password.length < 6){
+                Toast.makeText(applicationContext, "Minimum password length: 6 characters!!!", Toast.LENGTH_LONG).show()
+                editTextPassword2.text?.clear()
+            }
+            else {
+                createAccount(email.toString(), password.toString())
+            }
         }
 
-        buttonBackLogin.setOnClickListener()
-        {
+        buttonBackLogin.setOnClickListener() {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -38,14 +46,11 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun createAccount(email: String, password: String)
     {
-
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if(task.isSuccessful)
-            {
+            if(task.isSuccessful) {
                 Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_LONG).show()
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-
             }
         }
 

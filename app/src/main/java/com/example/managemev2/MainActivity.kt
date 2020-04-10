@@ -15,13 +15,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        buttonLogin.setOnClickListener()
-        {
+        buttonLogin.setOnClickListener() {
             var email = editTextMail4.text.toString()
             var password = editTextPassword4.text.toString()
 
-            if(email.length == 0 || password.length == 0)
-            {
+            if(email.length == 0 || password.length == 0) {
                 Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_LONG).show()
                 editTextMail4.text?.clear()
                 editTextPassword4.text?.clear()
@@ -31,8 +29,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        buttonCreateAccount.setOnClickListener()
-        {
+        buttonCreateAccount.setOnClickListener() {
             var intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
@@ -41,8 +38,7 @@ class MainActivity : AppCompatActivity() {
     private fun signIn(email: String, password: String)
     {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {task ->
-            if(task.isSuccessful)
-            {
+            if(task.isSuccessful) {
                 Toast.makeText(applicationContext, "User logged successfully", Toast.LENGTH_LONG).show()
                 //Create new Activity
                 var intent = Intent(this, LoginActivity::class.java)
@@ -52,9 +48,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Wrong data, please try again!!!", Toast.LENGTH_LONG).show()
                 editTextMail4.text?.clear()
                 editTextPassword4.text?.clear()
-
             }
-
         }
 
     }
