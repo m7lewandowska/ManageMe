@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         buttonLogin.setOnClickListener()
         {
-            var email = editTextMail.text.toString()
-            var password = editTextPassword.text.toString()
+            var email = editTextMail4.text
+            var password = editTextPassword4.text
 
-            signIn(email, password)
+            signIn(email.toString(), password.toString())
         }
 
         buttonCreateAccount.setOnClickListener()
