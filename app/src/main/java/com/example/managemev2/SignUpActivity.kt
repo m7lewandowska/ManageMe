@@ -20,10 +20,13 @@ class SignUpActivity : AppCompatActivity() {
 
         buttonSignUp.setOnClickListener()
         {
-            var email = editTextMail.text.toString()
-            var password = editTextPassword.text.toString()
+           // var email = editTextMail.text.toString()
+            var email = editTextMail2.text
+            var password = editTextPassword2.text
 
-            createAccount(email, password)
+
+
+            createAccount(email.toString(), password.toString())
         }
 
         buttonBackLogin.setOnClickListener()
