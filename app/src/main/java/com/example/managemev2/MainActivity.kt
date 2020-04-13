@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity() {
                     putExtra("EMAIL_NAME", email_name)
                 }
                     startActivity(intent)
+                    editTextMail4.text?.clear()
+                    editTextPassword4.text?.clear()
             }
             else{
                 Toast.makeText(applicationContext, "Wrong data, please try again!!!", Toast.LENGTH_SHORT).show()

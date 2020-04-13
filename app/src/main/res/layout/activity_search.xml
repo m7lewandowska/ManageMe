@@ -6,16 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bcg1"
-    tools:context=".LoginActivity">
+    tools:context=".SearchActivity">
 
     <include
         layout="@layout/toolbar" />
 
-<!--    <Button-->
-<!--        android:id="@+id/buttonLogout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="100dp"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        android:text="Logout" />-->
 </RelativeLayout>

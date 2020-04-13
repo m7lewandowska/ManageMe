@@ -12,8 +12,15 @@
     </item>
 
     <item
+        android:id="@+id/search_action"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
         android:id="@+id/settings_action"
-        android:title="Settings"
+        android:title="Already seen"
         app:showAsAction="never">
     </item>
 

@@ -7,24 +7,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    //var firebaseUser: FirebaseUser = firebaseAuth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-
-        //val user_email = intent.getStringExtra("EMAIL_NAME")
+        setContentView(R.layout.activity_search)
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
         //getSupportActionBar()?.setTitle(user_email);
-        getSupportActionBar()?.setTitle("Already seen");
+        getSupportActionBar()?.setTitle("Search");
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -41,11 +36,12 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuth.signOut()
                 firebaseAuth.addAuthStateListener {
                     if(firebaseAuth.currentUser == null){
-                        this.finish()
+//                        this.finish()
+                        var intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                     }
                 }
             }
-            //Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
             return true
         }
 
@@ -56,9 +52,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         else{
+//            Toast.makeText(this,"Already seen clicked", Toast.LENGTH_SHORT).show
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-//            Toast.makeText(this,"Already seen clicked",Toast.LENGTH_SHORT).show()
             return true
         }
         return super.onOptionsItemSelected(item)
