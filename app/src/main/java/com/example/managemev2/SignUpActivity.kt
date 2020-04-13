@@ -28,12 +28,12 @@ class SignUpActivity : AppCompatActivity() {
 
 
             if(email.length == 0 || password.length == 0) {
-                Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_SHORT).show()
                 editTextMail2.text?.clear()
                 editTextPassword2.text?.clear()
             }
             if(password.length < 6){
-                Toast.makeText(applicationContext, "Minimum password length: 6 characters!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Minimum password length: 6 characters!!!", Toast.LENGTH_SHORT).show()
                 editTextPassword2.text?.clear()
             }
             else {
@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
     {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if(task.isSuccessful) {
-                Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_SHORT).show()
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }

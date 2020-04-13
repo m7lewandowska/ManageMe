@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             var password = editTextPassword4.text.toString()
 
             if(email.length == 0 || password.length == 0) {
-                Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_SHORT).show()
                 editTextMail4.text?.clear()
                 editTextPassword4.text?.clear()
             }
@@ -45,13 +45,13 @@ class MainActivity : AppCompatActivity() {
     private fun signIn(email: String, password: String){
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {task ->
             if(task.isSuccessful) {
-                Toast.makeText(applicationContext, "User logged successfully", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "User logged successfully", Toast.LENGTH_SHORT).show()
                 //Create new Activity
                 var intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
             }
             else{
-                Toast.makeText(applicationContext, "Wrong data, please try again!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Wrong data, please try again!!!", Toast.LENGTH_SHORT).show()
                 editTextMail4.text?.clear()
                 editTextPassword4.text?.clear()
             }
