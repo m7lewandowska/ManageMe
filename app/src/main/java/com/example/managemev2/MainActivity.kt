@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
           setSupportActionBar(toolbar)
+          getSupportActionBar()?.setTitle("ManageMe");
 
         buttonLogin.setOnClickListener() {
             var email = editTextMail4.text.toString()
@@ -47,7 +48,10 @@ class MainActivity : AppCompatActivity() {
             if(task.isSuccessful) {
                 Toast.makeText(applicationContext, "User logged successfully", Toast.LENGTH_SHORT).show()
                 //Create new Activity
-                var intent = Intent(this, LoginActivity::class.java)
+                var intent = Intent(this, LoginActivity::class.java).apply {
+                    var email_name = editTextMail4.text.toString()
+                    putExtra("EMAIL_NAME", email_name)
+                }
                     startActivity(intent)
             }
             else{

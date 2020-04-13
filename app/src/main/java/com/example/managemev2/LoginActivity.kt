@@ -18,8 +18,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val user_email = intent.getStringExtra("EMAIL_NAME")
+
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
+        getSupportActionBar()?.setTitle(user_email);
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
