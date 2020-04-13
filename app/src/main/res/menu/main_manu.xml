@@ -4,13 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-<item
-        android:id="@+id/add_action"
-        app:showAsAction="ifRoom"
-        android:title="Save">
+    <item
+        android:id="@+id/logout_action"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="Logout"
+        app:showAsAction="ifRoom">
     </item>
-    <item android:title="Settings"
-        app:showAsAction="never"
-        android:id="@+id/settings_action"></item>
+
+    <item
+        android:id="@+id/settings_action"
+        android:title="Settings"
+        app:showAsAction="never">
+    </item>
 
 </menu>

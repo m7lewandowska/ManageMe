@@ -3,6 +3,8 @@ package com.example.managemev2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Toast
 import android.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
@@ -40,8 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun signIn(email: String, password: String)
-    {
+    private fun signIn(email: String, password: String){
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {task ->
             if(task.isSuccessful) {
                 Toast.makeText(applicationContext, "User logged successfully", Toast.LENGTH_LONG).show()
@@ -57,4 +58,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
