@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bcg1"
     tools:context=".LoginActivity">
 
-    <include
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar" />
 
-<!--    <Button-->
-<!--        android:id="@+id/buttonLogout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="100dp"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        android:text="Logout" />-->
+    <TextView
+        android:id="@+id/addFilm_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="101dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="101dp"
+        android:alpha="0.4"
+        android:text="Add new film to the list"
+        android:textColor="#555555"
+        android:textSize="20dp" />
+
+    <!--    <Button-->
+    <!--        android:id="@+id/buttonLogout"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="100dp"-->
+    <!--        android:layout_marginTop="100dp"-->
+    <!--        android:text="Logout" />-->
 </RelativeLayout>

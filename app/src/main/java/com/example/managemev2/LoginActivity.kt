@@ -41,7 +41,8 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuth.signOut()
                 firebaseAuth.addAuthStateListener {
                     if(firebaseAuth.currentUser == null){
-                        this.finish()
+                        var intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                     }
                 }
             }
