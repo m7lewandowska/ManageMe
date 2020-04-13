@@ -8,6 +8,11 @@
     android:background="@drawable/bcg1"
     tools:context=".MainActivity">
 
+    <include
+        layout="@layout/toolbar"
+        />
+
+
     <ImageView
         android:id="@+id/LOGO"
         android:layout_width="259dp"

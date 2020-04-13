@@ -18,6 +18,9 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
+        setSupportActionBar(toolbar)
+
         buttonSignUp.setOnClickListener() {
            // var email = editTextMail.text.toString()
             var email = editTextMail2.text.toString()
