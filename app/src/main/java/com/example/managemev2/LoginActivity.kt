@@ -1,14 +1,14 @@
 package com.example.managemev2
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_login.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,6 +19,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Write a message to the database
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+
+        //myRef.setValue("Hello, World!")
+        myRef.push().setValue("Hello")
+
         //val user_email = intent.getStringExtra("EMAIL_NAME")
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
@@ -27,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         getSupportActionBar()?.setTitle("Already seen");
     }
 
+    //Menu options
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.main_manu, menu)
@@ -35,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
+        //Logout button clicked on the top bar
         if (id == R.id.logout_action){
 
             if(firebaseAuth !=null) {
@@ -50,12 +59,14 @@ class LoginActivity : AppCompatActivity() {
             return true
         }
 
+        //Search button clicked on the top bar
         else if(id == R.id.search_action){
             var intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
             return true
         }
 
+        //Already seen button option on the top bar in the menu option
         else{
             var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

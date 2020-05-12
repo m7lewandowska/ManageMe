@@ -38,16 +38,29 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/button"
-        android:layout_width="63dp"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="50dp"
         android:layout_height="67dp"
         android:layout_marginTop="100dp"
         android:background="#3f51b5"
         android:src="@drawable/ic_search_black_24dp"
+        app:icon="@drawable/ic_search_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/editTextSearch1"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
 
@@ -20,6 +23,11 @@ class SearchActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         //getSupportActionBar()?.setTitle(user_email);
         getSupportActionBar()?.setTitle("Search");
+
+        recyclerView.layoutManager = GridLayoutManager(this,1)
+        recyclerView.adapter
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
