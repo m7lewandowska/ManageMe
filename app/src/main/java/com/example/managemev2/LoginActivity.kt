@@ -19,11 +19,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Write a message to the database
+        // Write to the database
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")
-
-        //myRef.setValue("Hello, World!")
         myRef.push().setValue("Hello")
 
         //val user_email = intent.getStringExtra("EMAIL_NAME")
