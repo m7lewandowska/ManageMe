@@ -1,5 +1,6 @@
 package com.example.managemev2
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter: RecyclerView.Adapter<MyViewHolder>() {
+class Adapter(private var movieList: MutableList<Movie>, val context: Context): RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
-    val movieList = mutableListOf<Movie>()
+    //private var movieList = mutableListOf<Movie>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
@@ -22,14 +23,12 @@ class Adapter: RecyclerView.Adapter<MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-//        TODO("Not yet implemented")
-        return movieList.size();
+        return movieList.size;
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        TODO("Not yet implemented")
 
-         var movie : Movie = movieList[position]
+        var movie : Movie = movieList[position]
         holder.movieTitle.text = movie.title
         holder.movieDirector.text = movie.director
         holder.movieGenre.text = movie.genre
@@ -43,6 +42,11 @@ class Adapter: RecyclerView.Adapter<MyViewHolder>() {
         val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
         val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
 
+    }
+
+    fun setMovies(movies:MutableList<Movie>){
+        movieList = movies
+        notifyDataSetChanged()
     }
 }
 

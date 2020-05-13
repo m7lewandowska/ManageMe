@@ -5,27 +5,43 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_search.*
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.item_row.*
 
-class SearchActivity : AppCompatActivity() {
+class AddActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(R.layout.activity_add)
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
         //getSupportActionBar()?.setTitle(user_email);
-        getSupportActionBar()?.setTitle("Search");
+        getSupportActionBar()?.setTitle("Add new movie");
 
-        recyclerView.layoutManager = GridLayoutManager(this,1)
-        recyclerView.adapter
+//        recyclerView.layoutManager = GridLayoutManager(this,1)
+//        recyclerView.adapter
+
+        buttonAdd.setOnClickListener {
+
+            var mName = MovieTitle_Input.text.toString()
+
+            var mDirector = MovieDirector_Input.text.toString()
+            var mGenre = MovieGenre_Input.text.toString()
+            var mYear = MovieYear_Input.text.toString()
+
+            var movie = Movie(mName, mDirector, mGenre, mYear)
+
+//          Write to the database
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("Movie")
+            myRef.push().setValue(movie)
+        }
 
 
     }
@@ -54,7 +70,7 @@ class SearchActivity : AppCompatActivity() {
         }
 
         else if(id == R.id.search_action){
-            var intent = Intent(this, SearchActivity::class.java)
+            var intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
             return true
         }

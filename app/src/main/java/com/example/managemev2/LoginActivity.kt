@@ -6,23 +6,21 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
 class LoginActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    //var firebaseUser: FirebaseUser = firebaseAuth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         // Write to the database
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
-        myRef.push().setValue("Hello")
+//        val database = FirebaseDatabase.getInstance()
+//        val myRef = database.getReference("message")
+//        myRef.push().setValue("Hello")
 
         //val user_email = intent.getStringExtra("EMAIL_NAME")
 
@@ -59,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Search button clicked on the top bar
         else if(id == R.id.search_action){
-            var intent = Intent(this, SearchActivity::class.java)
+            var intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
             return true
         }
