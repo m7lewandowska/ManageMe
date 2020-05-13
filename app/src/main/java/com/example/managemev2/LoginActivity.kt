@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 class LoginActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var user_email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 //        val myRef = database.getReference("message")
 //        myRef.push().setValue("Hello")
 
-        //val user_email = intent.getStringExtra("EMAIL_NAME")
+        user_email = intent.getStringExtra("EMAIL_NAME")
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
@@ -55,9 +56,15 @@ class LoginActivity : AppCompatActivity() {
             return true
         }
 
-        //Search button clicked on the top bar
-        else if(id == R.id.search_action){
-            var intent = Intent(this, AddActivity::class.java)
+        //Add button clicked on the top bar
+        else if(id == R.id.add_action){
+           // var intent = Intent(this, AddActivity::class.java)
+
+            var intent = Intent(this, AddActivity::class.java).apply {
+
+                putExtra("EMAIL_NAME", user_email)
+            }
+
             startActivity(intent)
             return true
         }
