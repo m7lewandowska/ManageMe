@@ -37,7 +37,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Director"
+                android:id="@+id/MovieDirector"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#BA0B0B0B"
@@ -61,7 +61,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Genre"
+                android:id="@+id/MovieGenre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
@@ -70,7 +70,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/ProductionYear"
+                android:id="@+id/MovieProductionYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
