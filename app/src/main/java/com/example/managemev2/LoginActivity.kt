@@ -5,11 +5,18 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var adapter: Adapter
+    lateinit var recyclerView: RecyclerView
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var listOfMovies: MutableList<Movie>
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     var user_email = ""
@@ -18,17 +25,50 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+       recyclerView = findViewById(R.id.activity_login_recyclerView_filmList)
+
+        //adapter = Adapter(listOfMovies, this)
+       // recyclerView.adapter = adapter
+
         // Write to the database
 //        val database = FirebaseDatabase.getInstance()
 //        val myRef = database.getReference("message")
 //        myRef.push().setValue("Hello")
 
         user_email = intent.getStringExtra("EMAIL_NAME")
+        var login = user_email.split("@")
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
         //getSupportActionBar()?.setTitle(user_email);
         getSupportActionBar()?.setTitle("Already seen");
+
+
+       // recyclerView.adapter = Adapter(listOfMovies, this)
+
+        val fireBase = FirebaseDatabase.getInstance()
+        databaseReference = fireBase.getReference(login[0])
+        recyclerView.layoutManager = GridLayoutManager(applicationContext, 1)
+
+
+        databaseReference.addValueEventListener(object: ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError){
+            }
+            override fun onDataChange(dataSnapshot: DataSnapshot){
+                listOfMovies = ArrayList()
+
+                for(row in dataSnapshot.children){
+                    val newRow = row.getValue(Movie::class.java)
+                    listOfMovies.add(newRow!!)
+                }
+                setupAdapter(listOfMovies)
+            }
+        })
+
+    }
+
+    private fun setupAdapter(mutableData:MutableList<Movie>){
+        recyclerView.adapter = Adapter(mutableData, this)
     }
 
     //Menu options
@@ -79,3 +119,4 @@ class LoginActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 }
+

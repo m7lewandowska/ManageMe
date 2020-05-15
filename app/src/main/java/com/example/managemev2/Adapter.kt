@@ -28,11 +28,17 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        var movie : Movie = movieList[position]
-        holder.movieTitle.text = movie.title
-        holder.movieDirector.text = movie.director
-        holder.movieGenre.text = movie.genre
-        holder.movieYear.text = movie.productionYear
+//        var movie : Movie = movieList[position]
+//        holder.movieTitle.text = movie.title
+//        holder.movieDirector.text = movie.director
+//        holder.movieGenre.text = movie.genre
+//        holder.movieYear.text = movie.productionYear
+
+        holder.movieTitle.text = movieList[holder.adapterPosition].title
+        holder.movieDirector.text = movieList[holder.adapterPosition].director
+        holder.movieGenre.text = movieList[holder.adapterPosition].genre
+        holder.movieYear.text = movieList[holder.adapterPosition].productionYear
+
     }
 
     inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -49,5 +55,3 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
         notifyDataSetChanged()
     }
 }
-
-//class MyViewHolder(val view: View): RecyclerView.ViewHolder(view)
