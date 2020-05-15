@@ -20,8 +20,9 @@
 
     <item
         android:id="@+id/settings_action"
+        android:icon="@drawable/ic_playlist_add_check_black_24dp"
         android:title="Already seen"
-        app:showAsAction="never">
+        app:showAsAction="ifRoom">
     </item>
 
 </menu>

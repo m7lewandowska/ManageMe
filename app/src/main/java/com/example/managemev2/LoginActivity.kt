@@ -65,6 +65,8 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+
+
     }
 
     private fun setupAdapter(mutableData:MutableList<Movie>){

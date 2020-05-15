@@ -1,11 +1,13 @@
 package com.example.managemev2
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class Adapter(private var movieList: MutableList<Movie>, val context: Context): RecyclerView.Adapter<Adapter.MyViewHolder>() {
@@ -19,7 +21,6 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
         var row : LinearLayout = view.findViewById(R.id.single_row)
 
         return MyViewHolder(view)
-
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +29,7 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-//        var movie : Movie = movieList[position]
+       var movie : Movie = movieList[position]
 //        holder.movieTitle.text = movie.title
 //        holder.movieDirector.text = movie.director
 //        holder.movieGenre.text = movie.genre
@@ -38,6 +39,16 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
         holder.movieDirector.text = movieList[holder.adapterPosition].director
         holder.movieGenre.text = movieList[holder.adapterPosition].genre
         holder.movieYear.text = movieList[holder.adapterPosition].productionYear
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context!!, DetailsActivity::class.java)
+            intent.putExtra("title", movie.title)
+            intent.putExtra("director", movie.director)
+            intent.putExtra("genre", movie.genre)
+            intent.putExtra("year", movie.productionYear)
+
+            ContextCompat.startActivity(context!!, intent,null)
+        }
 
     }
 
