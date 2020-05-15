@@ -35,12 +35,17 @@ class AddActivity : AppCompatActivity() {
 
             var movie = Movie(mName, mDirector, mGenre, mYear)
 
-            var login = mail.split("@")
+            var login = mail.split("@", ".")
 
 //          Write to the database
             val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference(login[0])
+            val myRef = database.getReference(login[0] + login[1] + login[2])
             myRef.push().setValue(movie)
+
+            MovieTitle_Input.text?.clear()
+            MovieDirector_Input.text?.clear()
+            MovieGenre_Input.text?.clear()
+            MovieYear_Input.text?.clear()
         }
     }
 

@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 //        myRef.push().setValue("Hello")
 
         user_email = intent.getStringExtra("EMAIL_NAME")
-        var login = user_email.split("@")
+        var login = user_email.split("@", ".")
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
        // recyclerView.adapter = Adapter(listOfMovies, this)
 
         val fireBase = FirebaseDatabase.getInstance()
-        databaseReference = fireBase.getReference(login[0])
+        databaseReference = fireBase.getReference(login[0] + login[1] + login[2])
         recyclerView.layoutManager = GridLayoutManager(applicationContext, 1)
 
 
