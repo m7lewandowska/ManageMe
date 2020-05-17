@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,25 +28,17 @@ class LoginActivity : AppCompatActivity() {
 
        recyclerView = findViewById(R.id.activity_login_recyclerView_filmList)
 
-        //adapter = Adapter(listOfMovies, this)
-       // recyclerView.adapter = adapter
-
-        // Write to the database
-//        val database = FirebaseDatabase.getInstance()
-//        val myRef = database.getReference("message")
-//        myRef.push().setValue("Hello")
-
         user_email = intent.getStringExtra("EMAIL_NAME")
         var login = user_email.split("@", ".")
 
+
+        //Toolbar name at the top
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
         //getSupportActionBar()?.setTitle(user_email);
         getSupportActionBar()?.setTitle("Already seen");
 
-
-       // recyclerView.adapter = Adapter(listOfMovies, this)
-
+        //FireBase get instance by
         val fireBase = FirebaseDatabase.getInstance()
         databaseReference = fireBase.getReference(login[0] + login[1] + login[2])
         recyclerView.layoutManager = GridLayoutManager(applicationContext, 1)
@@ -53,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
         databaseReference.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError){
+                Toast.makeText(applicationContext, "Database Error", Toast.LENGTH_SHORT).show()
             }
             override fun onDataChange(dataSnapshot: DataSnapshot){
                 listOfMovies = ArrayList()
@@ -64,9 +58,6 @@ class LoginActivity : AppCompatActivity() {
                 setupAdapter(listOfMovies)
             }
         })
-
-
-
     }
 
     private fun setupAdapter(mutableData:MutableList<Movie>){
