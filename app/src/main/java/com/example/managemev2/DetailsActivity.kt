@@ -14,12 +14,16 @@ class DetailsActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var databaseReference: DatabaseReference
+    var user_email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-        val intent = intent
+       // val intent = intent
+
+        user_email = intent.getStringExtra("EMAIL_NAME")
+        var login = user_email.split("@", ".")
 
         val mTitle = intent.getStringExtra("title")
         val mDirector = intent.getStringExtra("director")
@@ -34,7 +38,8 @@ class DetailsActivity : AppCompatActivity() {
 
         //delete record from dataBase
         val firebase = FirebaseDatabase.getInstance()
-        databaseReference = firebase.getReference("22o2pl")
+       // databaseReference = firebase.getReference("22o2pl")
+        databaseReference = firebase.getReference(login[0] + login[1] + login[2])
 
         BTNDelete.setOnClickListener{
             databaseReference.addValueEventListener(object: ValueEventListener {
@@ -92,7 +97,7 @@ class DetailsActivity : AppCompatActivity() {
 
             var intent = Intent(this, AddActivity::class.java).apply {
 
-                //putExtra("EMAIL_NAME", user_email)
+                putExtra("EMAIL_NAME", user_email)
             }
 
             startActivity(intent)
@@ -101,7 +106,9 @@ class DetailsActivity : AppCompatActivity() {
 
         //Already seen button option on the top bar in the menu option
         else{
-            var intent = Intent(this, LoginActivity::class.java)
+            var intent = Intent(this, LoginActivity::class.java).apply {
+                putExtra("EMAIL_NAME", user_email)
+            }
             startActivity(intent)
 //            Toast.makeText(this,"Already seen clicked",Toast.LENGTH_SHORT).show()
             return true

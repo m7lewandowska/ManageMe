@@ -12,13 +12,14 @@ import kotlinx.android.synthetic.main.activity_add.*
 class AddActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var user_email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
         //var intent = getIntent()
-        var mail = intent.getStringExtra("EMAIL_NAME")
+        user_email = intent.getStringExtra("EMAIL_NAME")
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
 
@@ -35,7 +36,7 @@ class AddActivity : AppCompatActivity() {
 
             var movie = Movie(mName, mDirector, mGenre, mYear)
 
-            var login = mail.split("@", ".")
+            var login = user_email.split("@", ".")
 
 //          Write to the database
             val database = FirebaseDatabase.getInstance()
@@ -57,31 +58,42 @@ class AddActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
+        //Logout button clicked on the top bar
         if (id == R.id.logout_action){
 
             if(firebaseAuth !=null) {
                 firebaseAuth.signOut()
                 firebaseAuth.addAuthStateListener {
                     if(firebaseAuth.currentUser == null){
-//                        this.finish()
                         var intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     }
                 }
             }
+            //Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
             return true
         }
 
+        //Add button clicked on the top bar
         else if(id == R.id.add_action){
-            var intent = Intent(this, AddActivity::class.java)
+            // var intent = Intent(this, AddActivity::class.java)
+
+            var intent = Intent(this, AddActivity::class.java).apply {
+
+                putExtra("EMAIL_NAME", user_email)
+            }
+
             startActivity(intent)
             return true
         }
 
+        //Already seen button option on the top bar in the menu option
         else{
-//            Toast.makeText(this,"Already seen clicked", Toast.LENGTH_SHORT).show
-            var intent = Intent(this, LoginActivity::class.java)
+            var intent = Intent(this, LoginActivity::class.java).apply {
+                putExtra("EMAIL_NAME", user_email)
+            }
             startActivity(intent)
+//            Toast.makeText(this,"Already seen clicked",Toast.LENGTH_SHORT).show()
             return true
         }
         return super.onOptionsItemSelected(item)

@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter(mutableData:MutableList<Movie>){
-        recyclerView.adapter = Adapter(mutableData, this)
+        recyclerView.adapter = Adapter(mutableData, this, user_email)
     }
 
     //Menu options
@@ -94,7 +94,6 @@ class LoginActivity : AppCompatActivity() {
            // var intent = Intent(this, AddActivity::class.java)
 
             var intent = Intent(this, AddActivity::class.java).apply {
-
                 putExtra("EMAIL_NAME", user_email)
             }
 
@@ -104,7 +103,9 @@ class LoginActivity : AppCompatActivity() {
 
         //Already seen button option on the top bar in the menu option
         else{
-            var intent = Intent(this, LoginActivity::class.java)
+            var intent = Intent(this, LoginActivity::class.java).apply {
+                putExtra("EMAIL_NAME", user_email)
+            }
             startActivity(intent)
 //            Toast.makeText(this,"Already seen clicked",Toast.LENGTH_SHORT).show()
             return true

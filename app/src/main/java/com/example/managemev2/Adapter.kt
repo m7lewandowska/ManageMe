@@ -2,6 +2,7 @@ package com.example.managemev2
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter(private var movieList: MutableList<Movie>, val context: Context): RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private var movieList: MutableList<Movie>, val context: Context, var user_email: String): RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
     //private var movieList = mutableListOf<Movie>()
 
@@ -41,7 +42,9 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
         holder.movieYear.text = movieList[holder.adapterPosition].productionYear
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context!!, DetailsActivity::class.java)
+            val intent = Intent(context!!, DetailsActivity::class.java).apply {
+               putExtra("EMAIL_NAME", user_email)
+            }
             intent.putExtra("title", movie.title)
             intent.putExtra("director", movie.director)
             intent.putExtra("genre", movie.genre)
@@ -49,7 +52,6 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context): 
 
             ContextCompat.startActivity(context!!, intent,null)
         }
-
     }
 
     inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
