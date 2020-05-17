@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class LoginActivity : AppCompatActivity() {
@@ -68,7 +70,9 @@ class LoginActivity : AppCompatActivity() {
                 {
                     addFilm_info.text = "Add new film to the list"
                 }
-                setupAdapter(listOfMovies)
+
+                var sorted = listOfMovies.sortedByDescending { it.rating }
+                setupAdapter(sorted.toMutableList())
 
             }
         })
