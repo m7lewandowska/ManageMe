@@ -20,7 +20,10 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-       // val intent = intent
+        //Toolbar name at the top
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
+        setSupportActionBar(toolbar)
+        getSupportActionBar()?.setTitle("Movie details");
 
         user_email = intent.getStringExtra("EMAIL_NAME")
         var login = user_email.split("@", ".")

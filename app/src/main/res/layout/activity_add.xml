@@ -29,11 +29,12 @@
             android:id="@+id/MovieTitle_Input"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:textColor="#3f51b5"
             android:textColorHint="#3f51b5"
             android:textColorLink="#3f51b5"
-            android:gravity="center_horizontal"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,6 +56,7 @@
             android:id="@+id/MovieDirector_Input"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:textColor="#3f51b5"
             android:textColorHint="#3f51b5"
             android:textColorLink="#3f51b5"
@@ -80,6 +82,7 @@
             android:id="@+id/MovieGenre_Input"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:textColor="#3f51b5"
             android:textColorHint="#3f51b5"
             android:textColorLink="#3f51b5"
@@ -107,6 +110,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:textStyle="bold"
             android:textColor="#3f51b5"
             android:textColorHint="#3f51b5"
             android:textColorLink="#3f51b5"

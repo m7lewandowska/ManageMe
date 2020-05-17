@@ -60,6 +60,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/MovieProductionYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#BA0B0B0B"
+                android:text="ProductionYear"
+                android:textSize="20sp" />
+
+            <TextView
                 android:id="@+id/MovieGenre"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -68,14 +77,7 @@
                 android:text="Genre"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/MovieProductionYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#BA0B0B0B"
-                android:text="ProductionYear"
-                android:textSize="20sp" />
+
         </LinearLayout>
     </LinearLayout>
 
@@ -83,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="5dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_marginBottom="5dp"/>
+<!--        android:background="@android:color/darker_gray"-->
 
 </LinearLayout>

@@ -11,11 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomTheme">
-        <activity android:name=".DetailsActivity"></activity>
-        <activity android:name=".AddActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".DetailsActivity"
+            android:screenOrientation="locked"/>
+        <activity
+            android:name=".AddActivity"
+            android:screenOrientation="locked"/>
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="locked"/>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="locked"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
