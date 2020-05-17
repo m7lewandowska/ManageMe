@@ -31,15 +31,11 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
        var movie : Movie = movieList[position]
-//        holder.movieTitle.text = movie.title
-//        holder.movieDirector.text = movie.director
-//        holder.movieGenre.text = movie.genre
-//        holder.movieYear.text = movie.productionYear
 
         holder.movieTitle.text = movieList[holder.adapterPosition].title
         holder.movieDirector.text = movieList[holder.adapterPosition].director
-        holder.movieGenre.text = movieList[holder.adapterPosition].genre
-        holder.movieYear.text = movieList[holder.adapterPosition].productionYear
+       // holder.movieGenre.text = movieList[holder.adapterPosition].genre
+        //holder.movieYear.text = movieList[holder.adapterPosition].productionYear
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context!!, DetailsActivity::class.java).apply {
@@ -58,8 +54,8 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
     {
         val movieTitle : TextView = view.findViewById(R.id.MovieName)
         val movieDirector : TextView = view.findViewById(R.id.MovieDirector)
-        val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
-        val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
+       // val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
+       // val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
 
     }
 
