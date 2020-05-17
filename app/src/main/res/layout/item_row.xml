@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+<!--    card_view:cardBackgroundColor="#00FFFFFF"-->
 
     <LinearLayout
         android:id="@+id/single_row"
@@ -15,8 +18,9 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="60dp"
-            android:layout_marginRight="10dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/ic_local_movies_black_24dp" />
 
         <LinearLayout
@@ -57,10 +61,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textStyle="bold"
                 android:text="7,5"
                 android:textColor="#BA0B0B0B"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -69,6 +73,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
+            android:layout_marginRight="10dp"
             android:background="@drawable/ic_star_black_24dp" />
 
 
@@ -78,8 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="5dp"
-/>
+        android:layout_marginBottom="5dp" />
     <!--        android:background="@android:color/darker_gray"-->
 
 </LinearLayout>
