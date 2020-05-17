@@ -41,6 +41,8 @@ class AddActivity : AppCompatActivity() {
 //          Write to the database
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference(login[0] + login[1] + login[2])
+
+
             myRef.push().setValue(movie)
 
             MovieTitle_Input.text?.clear()

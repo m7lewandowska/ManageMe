@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
        recyclerView = findViewById(R.id.activity_login_recyclerView_filmList)
 
-        user_email = intent.getStringExtra("EMAIL_NAME")
+        user_email = intent.getStringExtra("EMAIL_NAME")!!
         var login = user_email.split("@", ".")
 
 
@@ -55,7 +56,20 @@ class LoginActivity : AppCompatActivity() {
                     val newRow = row.getValue(Movie::class.java)
                     listOfMovies.add(newRow!!)
                 }
+
+
+                if(listOfMovies.isNotEmpty())
+                {
+                    addFilm_info.text = ""
+
+                }
+
+                else
+                {
+                    addFilm_info.text = "Add new film to the list"
+                }
                 setupAdapter(listOfMovies)
+
             }
         })
     }

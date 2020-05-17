@@ -59,6 +59,7 @@ class DetailsActivity : AppCompatActivity() {
                     }
                     //end activity
                     finish()
+
                 }
             })
         }
