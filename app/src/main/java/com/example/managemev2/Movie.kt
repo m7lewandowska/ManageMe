@@ -1,6 +1,6 @@
 package com.example.managemev2
 
-data class Movie(val title: String = "", val director:String = "",  val genre:String= "",  val productionYear:String= "" )
+data class Movie(val title: String = "", val director:String = "",  val genre:String= "",  val productionYear:String= "", val rating:String="" )
 //class Movie(_title:String, _director:String, _genre:String, _productionYear:String )
 //{
 //    var title : String

@@ -18,12 +18,34 @@
         android:layout_marginTop="130dp"
         android:text="TextView"
         android:textColor="#3f51b5"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title of the movie" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="7,5"
+        android:textColor="#D31C1C1C"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        tools:text="7,5" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/ic_star_black_24dp"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <TextView
         android:id="@+id/textView2"
@@ -34,7 +56,6 @@
         android:text="TextView"
         android:textColor="#D31C1C1C"
         android:textSize="25sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -49,7 +70,6 @@
         android:text="TextView"
         android:textColor="#D31C1C1C"
         android:textSize="25sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -64,7 +84,6 @@
         android:text="TextView"
         android:textColor="#D31C1C1C"
         android:textSize="25sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -75,7 +94,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="162dp"
         android:layout_marginBottom="243dp"
         android:text="DELETE"
@@ -94,9 +113,10 @@
         android:text="Director"
         android:textColor="#555555"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView5"
@@ -106,6 +126,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="280dp"
         android:text="Genre"
+        android:textStyle="bold"
         android:textColor="#555555"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +142,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="240dp"
         android:text="Production Year"
+        android:textStyle="bold"
         android:textColor="#555555"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"

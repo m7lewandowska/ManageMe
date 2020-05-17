@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.item_row.*
 
 class AddActivity : AppCompatActivity() {
 
@@ -33,8 +34,9 @@ class AddActivity : AppCompatActivity() {
             var mDirector = MovieDirector_Input.text.toString()
             var mGenre = MovieGenre_Input.text.toString()
             var mYear = MovieYear_Input.text.toString()
+            var mRating = MovieRating_Input.text.toString()
 
-            var movie = Movie(mName, mDirector, mGenre, mYear)
+            var movie = Movie(mName, mDirector, mGenre, mYear, mRating)
 
             var login = user_email.split("@", ".")
 
@@ -42,13 +44,13 @@ class AddActivity : AppCompatActivity() {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference(login[0] + login[1] + login[2])
 
-
             myRef.push().setValue(movie)
 
             MovieTitle_Input.text?.clear()
             MovieDirector_Input.text?.clear()
             MovieGenre_Input.text?.clear()
             MovieYear_Input.text?.clear()
+            MovieRating_Input.text?.clear()
         }
     }
 

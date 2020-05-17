@@ -36,6 +36,7 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
         holder.movieDirector.text = movieList[holder.adapterPosition].director
        // holder.movieGenre.text = movieList[holder.adapterPosition].genre
         //holder.movieYear.text = movieList[holder.adapterPosition].productionYear
+        holder.movieRating.text = movieList[holder.adapterPosition].rating
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context!!, DetailsActivity::class.java).apply {
@@ -45,6 +46,7 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
             intent.putExtra("director", movie.director)
             intent.putExtra("genre", movie.genre)
             intent.putExtra("year", movie.productionYear)
+            intent.putExtra("rating", movie.rating)
 
             ContextCompat.startActivity(context!!, intent,null)
         }
@@ -56,6 +58,7 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
         val movieDirector : TextView = view.findViewById(R.id.MovieDirector)
        // val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
        // val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
+        val movieRating : TextView = view.findViewById(R.id.MovieRating)
 
     }
 

@@ -32,11 +32,13 @@ class DetailsActivity : AppCompatActivity() {
         val mDirector = intent.getStringExtra("director")
         val mGenre = intent.getStringExtra("genre")
         val mYear = intent.getStringExtra("year")
+        val mRating = intent.getStringExtra("rating")
 
         textView1.setText(mTitle)
         textView2.setText(mDirector)
         textView3.setText(mGenre)
         textView4.setText(mYear)
+        textView7.setText(mRating)
 
 
         //delete record from dataBase
@@ -55,9 +57,10 @@ class DetailsActivity : AppCompatActivity() {
                         if(record.child("title").getValue().toString() == mTitle &&
                             record.child("director").getValue().toString() == mDirector &&
                             record.child("genre").getValue().toString() == mGenre &&
-                            record.child("productionYear").getValue().toString() == mYear) {
+                            record.child("productionYear").getValue().toString() == mYear &&
+                            record.child("rating").getValue().toString() == mRating) {
                                 record.ref.removeValue()
-                                Toast.makeText(applicationContext, "Deleted", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, "Movie deleted", Toast.LENGTH_SHORT).show()
                         }
                     }
                     //end activity
