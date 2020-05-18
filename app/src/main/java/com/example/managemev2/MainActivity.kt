@@ -21,13 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
           setSupportActionBar(toolbar)
-          getSupportActionBar()?.setTitle("ManageMe");
+        supportActionBar?.title = "ManageMe";
 
         buttonLogin.setOnClickListener() {
-            var email = editTextMail4.text.toString()
-            var password = editTextPassword4.text.toString()
+            val email = editTextMail4.text.toString()
+            val password = editTextPassword4.text.toString()
 
-            if(email.length == 0 || password.length == 0) {
+            if(email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_SHORT).show()
                 editTextMail4.text?.clear()
                 editTextPassword4.text?.clear()
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonCreateAccount.setOnClickListener() {
-            var intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
             if(task.isSuccessful) {
                 Toast.makeText(applicationContext, "User logged successfully", Toast.LENGTH_SHORT).show()
                 //Create new Activity
-                var intent = Intent(this, LoginActivity::class.java).apply {
-                    var email_name = editTextMail4.text.toString()
+                val intent = Intent(this, LoginActivity::class.java).apply {
+                    val email_name = editTextMail4.text.toString()
                     putExtra("EMAIL_NAME", email_name)
                 }
                     startActivity(intent)

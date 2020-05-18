@@ -1,5 +1,6 @@
 package com.example.managemev2
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -32,14 +33,14 @@ class LoginActivity : AppCompatActivity() {
        recyclerView = findViewById(R.id.activity_login_recyclerView_filmList)
 
         user_email = intent.getStringExtra("EMAIL_NAME")!!
-        var login = user_email.split("@", ".")
+        val login = user_email.split("@", ".")
 
 
         //Toolbar name at the top
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
         //getSupportActionBar()?.setTitle(user_email);
-        getSupportActionBar()?.setTitle("Already seen");
+        supportActionBar?.title = "Already seen";
 
         //FireBase get instance by
         val fireBase = FirebaseDatabase.getInstance()
@@ -51,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError){
                 Toast.makeText(applicationContext, "Database Error", Toast.LENGTH_SHORT).show()
             }
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(dataSnapshot: DataSnapshot){
                 listOfMovies = ArrayList()
 
@@ -71,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                     addFilm_info.text = "Add new film to the list"
                 }
 
-                var sorted = listOfMovies.sortedByDescending { it.rating }
+                val sorted = listOfMovies.sortedByDescending { it.rating }
                 setupAdapter(sorted.toMutableList())
 
             }
@@ -94,13 +96,11 @@ class LoginActivity : AppCompatActivity() {
         //Logout button clicked on the top bar
         if (id == R.id.logout_action){
 
-            if(firebaseAuth !=null) {
-                firebaseAuth.signOut()
-                firebaseAuth.addAuthStateListener {
-                    if(firebaseAuth.currentUser == null){
-                        var intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
+            firebaseAuth.signOut()
+            firebaseAuth.addAuthStateListener {
+                if(firebaseAuth.currentUser == null){
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
             }
             //Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
@@ -109,19 +109,16 @@ class LoginActivity : AppCompatActivity() {
 
         //Add button clicked on the top bar
         else if(id == R.id.add_action){
-           // var intent = Intent(this, AddActivity::class.java)
-
-            var intent = Intent(this, AddActivity::class.java).apply {
+            val intent = Intent(this, AddActivity::class.java).apply {
                 putExtra("EMAIL_NAME", user_email)
             }
-
             startActivity(intent)
             return true
         }
 
         //Already seen button option on the top bar in the menu option
         else{
-            var intent = Intent(this, LoginActivity::class.java).apply {
+            val intent = Intent(this, LoginActivity::class.java).apply {
                 putExtra("EMAIL_NAME", user_email)
             }
             startActivity(intent)

@@ -29,17 +29,16 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-       var movie : Movie = movieList[position]
+        val movie : Movie = movieList[position]
 
         holder.movieTitle.text = movieList[holder.adapterPosition].title
         holder.movieDirector.text = movieList[holder.adapterPosition].director
-       // holder.movieGenre.text = movieList[holder.adapterPosition].genre
+        //holder.movieGenre.text = movieList[holder.adapterPosition].genre
         //holder.movieYear.text = movieList[holder.adapterPosition].productionYear
         holder.movieRating.text = movieList[holder.adapterPosition].rating
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context!!, DetailsActivity::class.java).apply {
+            val intent = Intent(context, DetailsActivity::class.java).apply {
                putExtra("EMAIL_NAME", user_email)
             }
             intent.putExtra("title", movie.title)
@@ -48,18 +47,16 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
             intent.putExtra("year", movie.productionYear)
             intent.putExtra("rating", movie.rating)
 
-            ContextCompat.startActivity(context!!, intent,null)
+            ContextCompat.startActivity(context, intent,null)
         }
     }
 
-    inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
-    {
+    inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val movieTitle : TextView = view.findViewById(R.id.MovieName)
         val movieDirector : TextView = view.findViewById(R.id.MovieDirector)
-       // val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
-       // val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
+       //val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
+       //val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
         val movieRating : TextView = view.findViewById(R.id.MovieRating)
-
     }
 
     fun setMovies(movies:MutableList<Movie>){

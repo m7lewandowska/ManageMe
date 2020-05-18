@@ -23,10 +23,10 @@ class DetailsActivity : AppCompatActivity() {
         //Toolbar name at the top
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
-        getSupportActionBar()?.setTitle("Movie details");
+        supportActionBar?.title = "Movie details";
 
-        user_email = intent.getStringExtra("EMAIL_NAME")
-        var login = user_email.split("@", ".")
+        user_email = intent?.getStringExtra("EMAIL_NAME")!!
+        val login = user_email.split("@", ".")
 
         val mTitle = intent.getStringExtra("title")
         val mDirector = intent.getStringExtra("director")
@@ -40,10 +40,8 @@ class DetailsActivity : AppCompatActivity() {
         textView4.setText(mYear)
         textView7.setText(mRating)
 
-
         //delete record from dataBase
         val firebase = FirebaseDatabase.getInstance()
-       // databaseReference = firebase.getReference("22o2pl")
         databaseReference = firebase.getReference(login[0] + login[1] + login[2])
 
         BTNDelete.setOnClickListener{
@@ -65,12 +63,9 @@ class DetailsActivity : AppCompatActivity() {
                     }
                     //end activity
                     finish()
-
                 }
             })
         }
-
-
     }
 
     //Menu options
@@ -83,15 +78,13 @@ class DetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
         //Logout button clicked on the top bar
-        if (id == R.id.logout_action){
+        if(id == R.id.logout_action){
 
-            if(firebaseAuth !=null) {
-                firebaseAuth.signOut()
-                firebaseAuth.addAuthStateListener {
-                    if(firebaseAuth.currentUser == null){
-                        var intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
+            firebaseAuth.signOut()
+            firebaseAuth.addAuthStateListener {
+                if(firebaseAuth.currentUser == null){
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
             }
             //Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
@@ -102,8 +95,7 @@ class DetailsActivity : AppCompatActivity() {
         else if(id == R.id.add_action){
             // var intent = Intent(this, AddActivity::class.java)
 
-            var intent = Intent(this, AddActivity::class.java).apply {
-
+            val intent = Intent(this, AddActivity::class.java).apply {
                 putExtra("EMAIL_NAME", user_email)
             }
 
@@ -113,7 +105,7 @@ class DetailsActivity : AppCompatActivity() {
 
         //Already seen button option on the top bar in the menu option
         else{
-            var intent = Intent(this, LoginActivity::class.java).apply {
+            val intent = Intent(this, LoginActivity::class.java).apply {
                 putExtra("EMAIL_NAME", user_email)
             }
             startActivity(intent)

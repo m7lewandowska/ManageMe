@@ -20,15 +20,15 @@ class SignUpActivity : AppCompatActivity() {
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.myToolbar)
         setSupportActionBar(toolbar)
-        getSupportActionBar()?.setTitle("Sign Up");
+        supportActionBar?.title = "Sign Up";
 
         buttonSignUp.setOnClickListener() {
            // var email = editTextMail.text.toString()
-            var email = editTextMail2.text.toString()
-            var password = editTextPassword2.text.toString()
+            val email = editTextMail2.text.toString()
+            val password = editTextPassword2.text.toString()
 
 
-            if(email.length == 0 || password.length == 0) {
+            if(email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(applicationContext, "Please fill all fields!!!", Toast.LENGTH_SHORT).show()
                 editTextMail2.text?.clear()
                 editTextPassword2.text?.clear()
@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         buttonBackLogin.setOnClickListener() {
-            var intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
@@ -53,7 +53,7 @@ class SignUpActivity : AppCompatActivity() {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if(task.isSuccessful) {
                 Toast.makeText(applicationContext, "User created successfully", Toast.LENGTH_SHORT).show()
-                var intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
