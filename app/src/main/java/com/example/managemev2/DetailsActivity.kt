@@ -1,5 +1,6 @@
 package com.example.managemev2
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -45,6 +46,10 @@ class DetailsActivity : AppCompatActivity() {
         databaseReference = firebase.getReference(login[0] + login[1] + login[2])
 
         BTNDelete.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete movie")
+            builder.setMessage("Are you sure to delete movie $mTitle?")
+            builder.setPositiveButton("YES"){dialog, which ->
             databaseReference.addValueEventListener(object: ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError){
                     Toast.makeText(applicationContext, "Database Error", Toast.LENGTH_SHORT).show()
@@ -65,6 +70,12 @@ class DetailsActivity : AppCompatActivity() {
                     finish()
                 }
             })
+        }
+            builder.setNeutralButton("Cancel"){_,_ ->
+            }
+            val dialog: AlertDialog = builder.create()
+
+            dialog.show()
         }
     }
 
