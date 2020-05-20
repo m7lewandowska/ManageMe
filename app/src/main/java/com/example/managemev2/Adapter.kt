@@ -2,6 +2,7 @@ package com.example.managemev2
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +32,18 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie : Movie = movieList[position]
 
+        if(movieList[holder.adapterPosition].watched == "0"){
+            holder.movieWatched.text = "Not watched"
+            holder.movieWatched.setTextColor(Color.rgb(230,50,50))
+        }
+        else{
+            holder.movieWatched.text = "Watched"
+            holder.movieWatched.setTextColor(Color.rgb(85,165,70))
+        }
+
         holder.movieTitle.text = movieList[holder.adapterPosition].title
         holder.movieDirector.text = movieList[holder.adapterPosition].director
+       // holder.movieWatched.text = movieList[holder.adapterPosition].watched
         //holder.movieGenre.text = movieList[holder.adapterPosition].genre
         //holder.movieYear.text = movieList[holder.adapterPosition].productionYear
         holder.movieRating.text = movieList[holder.adapterPosition].rating
@@ -55,6 +66,7 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
     inner class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val movieTitle : TextView = view.findViewById(R.id.MovieName)
         val movieDirector : TextView = view.findViewById(R.id.MovieDirector)
+        val movieWatched : TextView = view.findViewById(R.id.MovieWatched)
        //val movieGenre : TextView = view.findViewById(R.id.MovieGenre)
        //val movieYear : TextView = view.findViewById(R.id.MovieProductionYear)
         val movieRating : TextView = view.findViewById(R.id.MovieRating)

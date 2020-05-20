@@ -16,7 +16,7 @@ class AddActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     var user_email = ""
-    var mWatched = ""
+    var mWatched = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,17 @@ class AddActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Add new movie";
 
+
+        movieWatched.setOnClickListener {
+            if (movieWatched.isChecked) {
+                mWatched = "1"
+                MovieRating_Input.isEnabled = true
+            } else {
+                mWatched = "0"
+                MovieRating_Input.isEnabled = false
+            }
+        }
+
         buttonAdd.setOnClickListener{
 
             val mName = MovieTitle_Input.text.toString()
@@ -36,12 +47,7 @@ class AddActivity : AppCompatActivity() {
             val mYear = MovieYear_Input.text.toString()
             val mRating = MovieRating_Input.text.toString()
 
-            if(movieWatched.isChecked){
-                mWatched = "1"
-            }
-            else{
-                mWatched = "0"
-            }
+
 
             val movie = Movie(mName, mDirector, mGenre, mYear, mRating, mWatched)
             val login = user_email.split("@", ".")
@@ -54,9 +60,33 @@ class AddActivity : AppCompatActivity() {
                 mGenre != "" && mGenre.isNotEmpty()){
                     if(mYear != "" && mYear.isNotEmpty() && mYear.toInt() > 1895 &&
                         mYear.toInt() < 2021){
-                        if(mRating != "" && mRating.isNotEmpty() && mRating.toInt() >= 0 &&
-                            mRating.toInt() <= 10){
+                        if(movieWatched.isChecked()) {
 
+                            if (mRating != "" && mRating.isNotEmpty() && mRating.toInt() >= 0 &&
+                                mRating.toInt() <= 10
+                            ) {
+
+                                myRef.push().setValue(movie)
+                                MovieTitle_Input.text?.clear()
+                                MovieDirector_Input.text?.clear()
+                                MovieGenre_Input.text?.clear()
+                                MovieYear_Input.text?.clear()
+                                MovieRating_Input.text?.clear()
+
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Movie added",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Rating value from 0 to 10",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        else{
                             myRef.push().setValue(movie)
                             MovieTitle_Input.text?.clear()
                             MovieDirector_Input.text?.clear()
@@ -64,10 +94,11 @@ class AddActivity : AppCompatActivity() {
                             MovieYear_Input.text?.clear()
                             MovieRating_Input.text?.clear()
 
-                            Toast.makeText(applicationContext, "Movie added", Toast.LENGTH_SHORT).show()
-                        }
-                        else{
-                            Toast.makeText(applicationContext, "Rating value from 0 to 10", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "Movie added",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                     else{

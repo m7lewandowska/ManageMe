@@ -144,6 +144,7 @@
             android:nextFocusForward="@+id/buttonAdd"
             android:inputType="number"
             android:textColor="#3f51b5"
+            android:enabled="false"
             android:textColorHint="#3f51b5"
             android:textColorLink="#3f51b5"
             android:textSize="20sp"

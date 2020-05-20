@@ -39,8 +39,7 @@ class DetailsActivity : AppCompatActivity() {
         if(mWatched == "1"){
             checkBox_watched.setChecked(true)
         }
-        else
-        {
+        else {
             checkBox_watched.setChecked(false)
         }
 
@@ -48,40 +47,63 @@ class DetailsActivity : AppCompatActivity() {
         textView2.setText(mDirector)
         textView3.setText(mGenre)
         textView4.setText(mYear)
-        textView7.setText(mRating)
+        InputRating.setText(mRating)
+        //textView7.setText(mRating)
+
+        if(InputRating.text.length > 0 ){
+            InputRating.isEnabled = false
+            InputRating.background = null
+            checkBox_watched.setEnabled(false);
+        }
+        else{
+            InputRating.isEnabled = true
+        }
 
         //delete record from dataBase
         val firebase = FirebaseDatabase.getInstance()
         databaseReference = firebase.getReference(login[0] + login[1] + login[2])
         val map_Movie: HashMap<String, Any> = HashMap()
 
-        checkBox_watched.setOnClickListener{
-            databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
-                override fun onCancelled(databaseError: DatabaseError){
-                    Toast.makeText(applicationContext, "Database Error", Toast.LENGTH_SHORT).show()
-                }
-                override fun onDataChange(dataSnapshot: DataSnapshot){
-                    for (record in dataSnapshot.children) {
+        checkBox_watched.setOnClickListener {
 
-                        if(record.child("title").getValue().toString() == mTitle &&
-                            record.child("director").getValue().toString() == mDirector &&
-                            record.child("genre").getValue().toString() == mGenre &&
-                            record.child("productionYear").getValue().toString() == mYear &&
-                            record.child("rating").getValue().toString() == mRating) {
+            if (InputRating.text.isNotEmpty()){
 
-                            if (record.child("watched").getValue().toString() == "1") {
-                                map_Movie["watched"] = "0"
-                            } else {
-                                map_Movie["watched"] = "1"
-                            }
-                            record.ref.updateChildren(map_Movie)
-                            break
-                        }
+                databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        Toast.makeText(applicationContext, "Database Error", Toast.LENGTH_SHORT).show()
                     }
-                    Toast.makeText(applicationContext, "Already watched movie updated", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-            })
+
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        for (record in dataSnapshot.children) {
+
+                            if (record.child("title").getValue().toString() == mTitle &&
+                                record.child("director").getValue().toString() == mDirector &&
+                                record.child("genre").getValue().toString() == mGenre &&
+                                record.child("productionYear").getValue().toString() == mYear &&
+                                record.child("rating").getValue().toString() == mRating) {
+
+                                if (record.child("watched").getValue().toString() == "1") {
+                                    map_Movie["watched"] = "0"
+                                    map_Movie["rating"] = ""
+                                }
+                                else {
+                                    map_Movie["watched"] = "1"
+                                    val currentRating = InputRating.text.toString()
+                                    map_Movie["rating"] = currentRating
+                                }
+                                record.ref.updateChildren(map_Movie)
+                                break
+                            }
+                        }
+                        Toast.makeText(applicationContext,"Already watched movie updated",Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                })
+        }
+            else{
+                Toast.makeText(applicationContext,"Fill movie rating from 0 to 10",Toast.LENGTH_SHORT).show()
+                checkBox_watched.setChecked(false)
+            }
         }
 
         BTNDelete.setOnClickListener{
@@ -110,10 +132,8 @@ class DetailsActivity : AppCompatActivity() {
                 }
             })
         }
-            builder.setNeutralButton("Cancel"){_,_ ->
-            }
+            builder.setNeutralButton("Cancel"){_,_ -> }
             val dialog: AlertDialog = builder.create()
-
             dialog.show()
         }
     }
