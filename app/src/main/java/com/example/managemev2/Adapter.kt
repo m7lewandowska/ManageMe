@@ -46,6 +46,7 @@ class Adapter(private var movieList: MutableList<Movie>, val context: Context, v
             intent.putExtra("genre", movie.genre)
             intent.putExtra("year", movie.productionYear)
             intent.putExtra("rating", movie.rating)
+            intent.putExtra("watched", movie.watched)
 
             ContextCompat.startActivity(context, intent,null)
         }

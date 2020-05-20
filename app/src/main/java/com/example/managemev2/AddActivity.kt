@@ -16,6 +16,7 @@ class AddActivity : AppCompatActivity() {
 
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     var user_email = ""
+    var mWatched = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,14 @@ class AddActivity : AppCompatActivity() {
             val mYear = MovieYear_Input.text.toString()
             val mRating = MovieRating_Input.text.toString()
 
-            val movie = Movie(mName, mDirector, mGenre, mYear, mRating)
+            if(movieWatched.isChecked){
+                mWatched = "1"
+            }
+            else{
+                mWatched = "0"
+            }
+
+            val movie = Movie(mName, mDirector, mGenre, mYear, mRating, mWatched)
             val login = user_email.split("@", ".")
 
             //Write to the database

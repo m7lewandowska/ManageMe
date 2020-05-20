@@ -34,6 +34,15 @@ class DetailsActivity : AppCompatActivity() {
         val mGenre = intent.getStringExtra("genre")
         val mYear = intent.getStringExtra("year")
         val mRating = intent.getStringExtra("rating")
+        val mWatched = intent.getStringExtra("watched")
+
+        if(mWatched == "1"){
+            checkBox_watched.setChecked(true)
+        }
+        else
+        {
+            checkBox_watched.setChecked(false)
+        }
 
         textView1.setText(mTitle)
         textView2.setText(mDirector)
@@ -44,6 +53,36 @@ class DetailsActivity : AppCompatActivity() {
         //delete record from dataBase
         val firebase = FirebaseDatabase.getInstance()
         databaseReference = firebase.getReference(login[0] + login[1] + login[2])
+        val map_Movie: HashMap<String, Any> = HashMap()
+
+        checkBox_watched.setOnClickListener{
+            databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onCancelled(databaseError: DatabaseError){
+                    Toast.makeText(applicationContext, "Database Error", Toast.LENGTH_SHORT).show()
+                }
+                override fun onDataChange(dataSnapshot: DataSnapshot){
+                    for (record in dataSnapshot.children) {
+
+                        if(record.child("title").getValue().toString() == mTitle &&
+                            record.child("director").getValue().toString() == mDirector &&
+                            record.child("genre").getValue().toString() == mGenre &&
+                            record.child("productionYear").getValue().toString() == mYear &&
+                            record.child("rating").getValue().toString() == mRating) {
+
+                            if (record.child("watched").getValue().toString() == "1") {
+                                map_Movie["watched"] = "0"
+                            } else {
+                                map_Movie["watched"] = "1"
+                            }
+                            record.ref.updateChildren(map_Movie)
+                            break
+                        }
+                    }
+                    Toast.makeText(applicationContext, "Already watched movie updated", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            })
+        }
 
         BTNDelete.setOnClickListener{
             val builder = AlertDialog.Builder(this)

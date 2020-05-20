@@ -16,7 +16,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:hint="Title"
         app:boxBackgroundMode="outline"
         app:endIconMode="clear_text"
@@ -156,9 +156,22 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Add Movie"
         android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieWatched" />
+
+    <CheckBox
+        android:id="@+id/movieWatched"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="Film Already Watched"
+        android:textColor="#5F5F5F"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MovieRating1_Input" />
